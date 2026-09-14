@@ -1,6 +1,6 @@
 version: "0.1"
 name: interface-graph
-purpose: Machine-readable structural schema for Interface Graph documents.
+purpose: Machine-readable structural schema for concrete Interface Graph example documents.
 
 node_types:
   actor:
@@ -14,7 +14,7 @@ node_types:
   environment:
     required: [id, type]
   interface:
-    required: [id, type, contract, participants]
+    required: [id, type]
     type_values: [interface]
   capability:
     required: [id, type]
@@ -36,13 +36,10 @@ edge_types:
   - bounds
 
 interface:
-  required: [id, type, contract, participants]
-  participant_min: 2
+  required: [id, contract, taxonomy]
   fields:
     id: string
-    type: interface
     contract: string
-    participants: list
     taxonomy: object
     mediation: list
     capabilities: list
