@@ -1,6 +1,6 @@
-version: "0.1"
+version: "0.2"
 repository: bonsai/interface
-purpose: "Interface ontology research roadmap"
+purpose: "Interface ontology, taxonomy, and research roadmap"
 
 issues:
   - number: 1
@@ -84,6 +84,9 @@ issues:
   - number: 27
     title: "Interface Ontology v0.1：10+理論を統合する"
     focus: [ontology, world, difference, boundary, interface, affordance, action, transformation]
+  - number: 28
+    title: "Interface Taxonomy v0.1：界面を分類する"
+    focus: [taxonomy, actor, modality, direction, temporality, coupling, mediation, effect]
 
 ontology:
   provisional_definition: >-
@@ -113,8 +116,68 @@ ontology:
     - "Interface can transform actors, models, and environments."
     - "Interface can mediate between multiple models of one world."
 
+taxonomy:
+  purpose: "Classify interfaces by what they relate, how they act, and what they transform."
+  dimensions:
+    actor:
+      question: "Who or what participates?"
+      values: [human, agent, software, service, device, organization, ecosystem, world]
+    relation:
+      question: "What is related?"
+      values: [human_human, human_agent, human_software, agent_agent, agent_tool, service_service, organization_organization, ecosystem_ecosystem]
+    modality:
+      question: "What kind of operation occurs?"
+      values: [observe, sense, query, represent, translate, negotiate, command, invoke, coordinate, learn]
+    direction:
+      question: "How does influence move?"
+      values: [inbound, outbound, bidirectional, broadcast, multicast, mediated]
+    temporality:
+      question: "How does exchange unfold in time?"
+      values: [sync, async, request_response, stream, event, batch, persistent]
+    coupling:
+      question: "How tightly are participants coupled?"
+      values: [tight, loose, structural, semantic, temporal, spatial, organizational]
+    mediation:
+      question: "What does the interface do to what passes through it?"
+      values: [transparent, transform, filter, translate, aggregate, route, negotiate, generate]
+    state:
+      question: "Does the interface observe or alter state?"
+      values: [stateless, stateful, read_only, state_transition, co_evolution]
+    effect:
+      question: "What changes because the interface is used?"
+      values: [information, meaning, capability, behavior, state, relation, boundary, environment]
+    discoverability:
+      question: "How is the interface found?"
+      values: [known, documented, registry, capability_discovery, inferred, generated]
+    embodiment:
+      question: "Where does the interface exist?"
+      values: [conceptual, linguistic, visual, physical, digital, computational, organizational]
+
+  archetypes:
+    - id: human_ui
+      dimensions: [human, represent, bidirectional, sync, state_transition, visual]
+    - id: agent_tool
+      dimensions: [agent, invoke, bidirectional, request_response, loose, transform, stateful, computational]
+    - id: agent_agent
+      dimensions: [agent, negotiate, bidirectional, async, semantic, co_evolution]
+    - id: service_api
+      dimensions: [software, query, request_response, loose, documented, digital]
+    - id: event_interface
+      dimensions: [service, event, broadcast, async, loose, route, state_transition]
+    - id: human_organization
+      dimensions: [human, negotiate, bidirectional, organizational, relation]
+    - id: ecosystem_interface
+      dimensions: [ecosystem, coordinate, mediated, async, structural, environment]
+    - id: world_model_interface
+      dimensions: [world, observe, represent, mediated, conceptual, meaning]
+
+  design_rule: >-
+    Taxonomy is multi-dimensional, not a single hierarchy. An interface may belong to
+    multiple categories simultaneously, and its classification may change as the relation changes.
+
 next:
   - "Interface Ontology YAML"
+  - "Interface Taxonomy YAML"
   - "Interface Contract schema"
   - "Interface Graph"
   - "Affordance Discovery"
