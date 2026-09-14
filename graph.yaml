@@ -1,16 +1,18 @@
-version: "0.1"
+version: "0.2"
 repository: bonsai/interface
-purpose: "Graph representation of interfaces, actors, models, worlds, capabilities, states, and events"
+purpose: "Graph representation of interfaces, actors, models, worlds, capabilities, states, events, and experience"
 
 principle: >-
   Interface は endpoint の集合ではなく、Actor・Model・World・Environment のあいだで
   観測・翻訳・媒介・作用・協調・境界生成を生む関係として表現する。
+  Subject と Object は固定的な型ではなく、関係の中で生じる役割として扱う。
+  Action → Interaction → Reaction → Experience が次の Action を変化させる循環を表現する。
 
 nodes:
   actor:
-    description: "Interface に参加する主体"
+    description: "Interface に参加する存在。subject/object は関係上の役割であり actor type そのものではない"
     required_fields: [id, type]
-    types: [human, agent, software, service, organization, ecosystem]
+    types: [human, agent, software, service, organization, ecosystem, environment]
   model:
     description: "世界を記述・予測・操作するモデル"
     required_fields: [id, type]
@@ -28,11 +30,33 @@ nodes:
     description: "Interface が可能にする行為"
     required_fields: [id, action]
   state:
-    description: "関係・主体・モデル・環境の状態"
+    description: "関係・主体・客体・モデル・環境の状態。経験として蓄積され得る"
     required_fields: [id]
   event:
     description: "状態変化または関係変化を観測可能にしたもの"
     required_fields: [id, type]
+
+roles:
+  subject:
+    description: "ある relation において Action を開始・担う側"
+  object:
+    description: "ある relation において Action を受け Reaction / State Change を生じる側"
+  principle: "Subject/Object は entity の固定型ではなく relation-dependent な役割である"
+  reversibility: "同一 entity が別の relation では subject と object の双方になり得る"
+
+experience:
+  definition: >-
+    Experience は、Interface を通じた相互作用によって生じ、状態・履歴・関係・
+    affordance として次の Action に影響する変化の蓄積である。
+  object_experience: >-
+    Object Experience は主観意識を仮定せず、客体に蓄積された state・history・relation・affordance の変化を指す。
+  cycle:
+    - action
+    - interaction
+    - reaction
+    - state_change
+    - experience
+    - next_action
 
 edges:
   observes:
@@ -42,10 +66,10 @@ edges:
     from: [interface, model]
     to: [model, actor, interface]
   mediates:
-    from: [interface]
-    to: [actor, model, world, environment]
+    from: [interface, actor]
+    to: [actor, model, world, environment, interface]
   affords:
-    from: [interface]
+    from: [interface, state]
     to: [capability]
   coordinates:
     from: [interface, actor, ecosystem]
@@ -54,7 +78,7 @@ edges:
     from: [actor, interface]
     to: [actor, software, service, environment]
   transforms:
-    from: [interface, actor, model, event]
+    from: [interface, actor, model, event, state]
     to: [state, model, actor, relation]
   shares:
     from: [actor, interface, state]
@@ -67,7 +91,12 @@ edges:
     to: [boundary, actor, model, ecosystem]
 
 relations:
-  - "Actor --[Interface]--> Actor"
+  - "Subject --[Action]--> Interface"
+  - "Interface --[Interaction]--> Object"
+  - "Object --[Reaction]--> State"
+  - "State --[Experience]--> Capability"
+  - "Capability --[affords]--> Next Action"
+  - "Subject --[Interface]--> Object"
   - "Actor --[observes]--> World"
   - "Model --[translates]--> World"
   - "Interface --[affords]--> Capability"
@@ -114,11 +143,15 @@ mapping:
   taxonomy: "taxonomy.yaml"
   contract: "contract.yaml"
   ontology: "issues.yaml#ontology"
+  experience: "examples/action-interaction-reaction-experience.yaml"
 
 rules:
   - "World is singular in the ontology; models may be multiple."
   - "Interface is a relation/process node, not merely an endpoint."
+  - "Subject/Object are relation-dependent roles, not fixed entity types."
+  - "The same entity may be Subject in one relation and Object in another."
   - "Edges may carry semantics, state transitions, and transformation metadata."
   - "Capability is generated/afforded by an interface rather than being identical to the interface."
+  - "Experience may accumulate on either side of an interaction; Object Experience does not imply subjective consciousness."
   - "Boundary generation is a first-class graph phenomenon."
   - "Graph representation must preserve ambiguity, misdelivery, and relation change when they are contractually relevant."
