@@ -92,6 +92,46 @@
   (interface (participates-in identity boundary))
   (effect (boundary-generated)))
 
+(declaration
+  (philosopher merleau-ponty)
+  (concept lived-body)
+  (claim "Perception is constituted through the body's engagement with the world.")
+  (relation (body perception world))
+  (interface (mediates embodied-perception))
+  (effect (embodied-understanding)))
+
+(declaration
+  (philosopher whitehead)
+  (concept actual-occasion)
+  (claim "Reality consists of processes of becoming, not static substances.")
+  (relation (process event actual-occasion))
+  (interface (site-of-actualization))
+  (effect (new-actual-occasion)))
+
+(declaration
+  (philosopher delanda)
+  (concept assemblage)
+  (claim "Heterogeneous components produce emergent properties through their relations.")
+  (relation (parts relations emergent-properties))
+  (interface (assembles heterogeneous-components))
+  (effect (emergent-capability)))
+
+(declaration
+  (philosopher stiegler)
+  (concept epiphylogenesis)
+  (claim "Technology serves as externalized memory that constitutes human temporality.")
+  (relation (human technology memory))
+  (interface (externalizes preserves-memory))
+  (effect (expanded-temporal-horizon)))
+
+(declaration
+  (philosopher haraway)
+  (concept companion-species)
+  (claim "Boundaries between species are constituted through mutual co-creation.")
+  (relation (human non-human co-constitution))
+  (interface (blurs species-boundaries))
+  (effect (mutual-co-creation)))
+
 (cycle
   (action subject)
   (interaction interface)

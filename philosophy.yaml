@@ -147,3 +147,59 @@ philosophers:
       participates_in: [identity, boundary]
     effect:
       produces: boundary_generated
+
+  merleau_ponty:
+    name: Maurice Merleau-Ponty
+    concept: lived_body
+    claim: Perception is constituted through the body's engagement with the world.
+    relation:
+      between: [body, perception, world]
+    interface:
+      mediates: embodied_perception
+    effect:
+      produces: embodied_understanding
+
+  whitehead:
+    name: Alfred North Whitehead
+    concept: actual_occasion
+    claim: Reality consists of processes of becoming, not static substances.
+    relation:
+      between: [process, event, actual_occasion]
+    interface:
+      site_of: actualization
+    effect:
+      produces: new_actual_occasion
+
+  delanda:
+    name: Manuel DeLanda
+    concept: assemblage
+    claim: Heterogeneous components produce emergent properties through their relations.
+    relation:
+      between: [parts, relations, emergent_properties]
+    interface:
+      assembles: heterogeneous_components
+    effect:
+      produces: emergent_capability
+
+  stiegler:
+    name: Bernard Stiegler
+    concept: epiphylogenesis
+    claim: Technology serves as externalized memory that constitutes human temporality.
+    relation:
+      between: [human, technology, memory]
+    interface:
+      externalizes: memory
+      preserves: memory
+    effect:
+      produces: expanded_temporal_horizon
+
+  haraway:
+    name: Donna Haraway
+    concept: companion_species
+    claim: Boundaries between species are constituted through mutual co-creation.
+    relation:
+      between: [human, non_human, co_constitution]
+    interface:
+      blurs: species_boundaries
+    effect:
+      produces: mutual_co_creation
