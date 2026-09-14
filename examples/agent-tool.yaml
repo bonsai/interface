@@ -1,0 +1,29 @@
+version: "0.1"
+id: "example.agent-tool"
+interface:
+  id: "agent.files.read"
+  contract: "agent.files.read"
+  taxonomy:
+    actor: [agent, software]
+    relation: agent-tool
+    modality: [symbolic, executable]
+    direction: bidirectional
+    temporality: synchronous
+    coupling: negotiated
+    mediation: [translation, transformation, control]
+    state: stateless
+    effect: [read, query]
+    discoverability: [manifest, schema]
+    embodiment: digital
+nodes:
+  - {id: agent, type: actor, actor_type: agent}
+  - {id: files, type: actor, actor_type: software}
+  - {id: read-interface, type: interface, contract: "agent.files.read"}
+  - {id: read-capability, type: capability, action: read}
+  - {id: resource, type: state}
+  - {id: read-completed, type: event, event_type: read_completed}
+edges:
+  - {from: agent, type: commands, to: read-interface}
+  - {from: read-interface, type: affords, to: read-capability}
+  - {from: read-capability, type: transforms, to: resource}
+  - {from: read-interface, type: generates, to: read-completed}
