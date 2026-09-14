@@ -1,0 +1,88 @@
+version: "0.1"
+id: "experience.cycle"
+interface:
+  id: "experience.cycle"
+  contract: "experience.cycle"
+  taxonomy:
+    actor: [human, object]
+    relation: human-object
+    modality: [physical, symbolic, event]
+    direction: bidirectional
+    temporality: [event-driven, persistent]
+    coupling: [adaptive, evolving]
+    mediation: [observation, affordance, transformation]
+    state: evolving-state
+    effect: [mutation, event, relation-change]
+    discoverability: inferred
+    embodiment: embodied
+
+nodes:
+  - id: human
+    type: actor
+    actor_type: human
+  - id: object
+    type: actor
+    actor_type: environment
+  - id: experience-interface
+    type: interface
+    contract: "experience.cycle"
+  - id: action
+    type: event
+    event_type: action
+  - id: interaction
+    type: event
+    event_type: interaction
+  - id: reaction
+    type: event
+    event_type: reaction
+  - id: object-state
+    type: state
+  - id: object-experience
+    type: state
+  - id: next-affordance
+    type: capability
+  - id: next-action
+    type: event
+    event_type: action
+
+edges:
+  - id: human-action
+    from: human
+    type: commands
+    to: action
+  - id: action-interface
+    from: action
+    type: mediates
+    to: experience-interface
+  - id: interface-interaction
+    from: experience-interface
+    type: generates
+    to: interaction
+  - id: interaction-object
+    from: interaction
+    type: transforms
+    to: object
+  - id: object-reaction
+    from: object
+    type: generates
+    to: reaction
+  - id: reaction-state
+    from: reaction
+    type: transforms
+    to: object-state
+  - id: state-experience
+    from: object-state
+    type: transforms
+    to: object-experience
+  - id: experience-affordance
+    from: object-experience
+    type: affords
+    to: next-affordance
+  - id: affordance-next-action
+    from: next-affordance
+    type: generates
+    to: next-action
+  - id: next-action-interface
+    from: next-action
+    type: mediates
+    to: experience-interface
