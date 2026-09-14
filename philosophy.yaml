@@ -1,0 +1,111 @@
+version: "0.1"
+purpose: >
+  Keep philosophical statements lightweight and machine-readable by expressing
+  them as interface rules, operations, and observable effects.
+
+rules:
+  - philosophy_is_not_implementation
+  - concepts_are_design_constraints
+  - rules_should_change_observable_interface_behavior
+  - world_is_singular
+  - models_are_multiple
+
+philosophers:
+  simondon:
+    name: Gilbert Simondon
+    concept: transduction
+    claim: Relation produces transformation across a boundary.
+    interface_rule: Interface transforms relations rather than merely transmitting information.
+    operation: transduce
+    relation: [difference, interface, transformation]
+    observable_effect: new_relation_or_state
+
+  latour:
+    name: Bruno Latour
+    concept: mediator
+    claim: A mediator transforms what passes through it.
+    interface_rule: Interface may transform input, output, and the relation between them.
+    operation: mediate
+    relation: [actor, mediator, transformation]
+    observable_effect: transformed_output
+
+  deleuze:
+    name: Gilles Deleuze
+    concept: difference_and_becoming
+    claim: Difference can produce an event and a new state.
+    interface_rule: Interface is a site where difference produces becoming.
+    operation: become
+    relation: [difference, encounter, event, becoming]
+    observable_effect: state_change
+
+  nancy:
+    name: Jean-Luc Nancy
+    concept: being_with
+    claim: Being is constituted through relation with others.
+    interface_rule: Interface exists through relation rather than independently.
+    operation: relate
+    relation: [self, other, between]
+    observable_effect: relation_formed
+
+  derrida:
+    name: Jacques Derrida
+    concept: differance_and_translation
+    claim: Meaning is produced through difference and deferred translation.
+    interface_rule: Interface must preserve difference and allow misdelivery or reinterpretation.
+    operation: translate
+    relation: [difference, trace, translation, misdelivery]
+    observable_effect: changed_meaning
+
+  foucault:
+    name: Michel Foucault
+    concept: dispositif
+    claim: Arrangements organize what can be said, seen, and done.
+    interface_rule: Interface configures the possible actions of participants.
+    operation: configure
+    relation: [power, knowledge, action]
+    observable_effect: changed_action_space
+
+  luhmann:
+    name: Niklas Luhmann
+    concept: system_boundary
+    claim: A system distinguishes itself from its environment through boundaries.
+    interface_rule: Interface selects what crosses a system boundary and how it is processed.
+    operation: bound
+    relation: [system, boundary, environment]
+    observable_effect: selected_information
+
+  mcluhan:
+    name: Marshall McLuhan
+    concept: medium
+    claim: The medium shapes the environment of communication and action.
+    interface_rule: Interface changes the conditions under which interaction occurs.
+    operation: mediate_environment
+    relation: [medium, environment, interaction]
+    observable_effect: changed_interaction_pattern
+
+  gibson:
+    name: James J. Gibson
+    concept: affordance
+    claim: An environment offers action possibilities to an organism.
+    interface_rule: Interface exposes or constrains possible actions.
+    operation: afford
+    relation: [agent, environment, action]
+    observable_effect: action_available
+
+  bateson:
+    name: Gregory Bateson
+    concept: difference_that_makes_a_difference
+    claim: Information is a difference that changes a system.
+    interface_rule: Interface makes relevant differences observable and actionable.
+    operation: detect_difference
+    relation: [difference, observation, change]
+    observable_effect: state_update
+
+  barad:
+    name: Karen Barad
+    concept: intra_action
+    claim: Entities and boundaries emerge through relations.
+    interface_rule: Interface participates in producing the identities and boundaries of its participants.
+    operation: intra_act
+    relation: [relation, boundary, emergence]
+    observable_effect: boundary_generated
