@@ -1,0 +1,208 @@
+version: "0.1"
+repository: bonsai/interface
+purpose: "Machine-readable contract for describing an interface independently of protocol implementation"
+
+principle: >-
+  Taxonomy describes an Interface; Contract constrains its meaning, capabilities,
+  effects, and conditions; Protocol and Implementation realize the Contract.
+
+schema:
+  id:
+    type: string
+    required: true
+  name:
+    type: string
+    required: true
+  participants:
+    type: array
+    required: true
+    items:
+      type: object
+      fields:
+        id: {type: string, required: true}
+        role: {type: string, required: true}
+        actor_type: {type: string, required: true}
+  intent:
+    type: string
+    required: true
+  input:
+    type: object
+    required: false
+    fields:
+      schema: {type: string}
+      semantics: {type: string}
+  output:
+    type: object
+    required: false
+    fields:
+      schema: {type: string}
+      semantics: {type: string}
+  semantics:
+    type: object
+    required: true
+    fields:
+      description: {type: string, required: true}
+      transformations: {type: array}
+  capability:
+    type: array
+    required: false
+    items: string
+  preconditions:
+    type: array
+    required: false
+    items: string
+  postconditions:
+    type: array
+    required: false
+    items: string
+  state:
+    type: object
+    required: false
+    fields:
+      mode: {type: string}
+      owned_by: {type: string}
+      transitions: {type: array}
+  effects:
+    type: array
+    required: true
+    items: string
+  errors:
+    type: array
+    required: false
+    items:
+      type: object
+      fields:
+        code: {type: string, required: true}
+        meaning: {type: string, required: true}
+        recoverable: {type: boolean}
+  ambiguity:
+    type: object
+    required: false
+    fields:
+      allowed: {type: boolean}
+      policy: {type: string}
+  permissions:
+    type: object
+    required: false
+    fields:
+      required: {type: boolean}
+      policy: {type: string}
+  timing:
+    type: object
+    required: false
+    fields:
+      mode: {type: string}
+      timeout: {type: string}
+  version:
+    type: string
+    required: true
+  discoverability:
+    type: object
+    required: false
+    fields:
+      mode: {type: string}
+      location: {type: string}
+  protocol:
+    type: string
+    required: false
+  implementation:
+    type: string
+    required: false
+
+examples:
+  human_ui:
+    id: "ui.search"
+    name: "Search interface"
+    participants:
+      - {id: human, role: operator, actor_type: human}
+      - {id: application, role: responder, actor_type: software}
+    intent: "Find information matching a human query"
+    input:
+      schema: "text/query"
+      semantics: "Natural-language search request"
+    output:
+      schema: "result/list"
+      semantics: "Ranked information results"
+    semantics:
+      description: "Translate human intent into searchable operations and present results"
+      transformations: [interpret, query, rank, present]
+    capability: [query]
+    preconditions: ["application is available"]
+    postconditions: ["results are presented"]
+    state:
+      mode: stateful
+      owned_by: application
+      transitions: [idle_to_searching, searching_to_presenting]
+    effects: [query]
+    errors:
+      - {code: invalid_query, meaning: "Query cannot be interpreted", recoverable: true}
+    ambiguity:
+      allowed: true
+      policy: "request clarification or rank alternatives"
+    permissions:
+      required: false
+      policy: "public information"
+    timing:
+      mode: synchronous
+      timeout: "10s"
+    version: "0.1"
+    discoverability:
+      mode: explicit
+      location: "ui"
+    protocol: "interaction"
+    implementation: "web-ui"
+
+  agent_tool:
+    id: "agent.files.read"
+    name: "File reading interface"
+    participants:
+      - {id: agent, role: caller, actor_type: agent}
+      - {id: files, role: provider, actor_type: software}
+    intent: "Read a selected file resource"
+    input:
+      schema: "file-reference"
+      semantics: "Path or resource identifier"
+    output:
+      schema: "text/resource"
+      semantics: "File content or structured representation"
+    semantics:
+      description: "Translate agent intent into a file retrieval operation"
+      transformations: [validate_reference, retrieve, serialize]
+    capability: [read]
+    preconditions: ["resource exists", "caller is authorized"]
+    postconditions: ["resource content returned"]
+    state:
+      mode: stateless
+      owned_by: files
+      transitions: []
+    effects: [read]
+    errors:
+      - {code: not_found, meaning: "Resource does not exist", recoverable: true}
+      - {code: denied, meaning: "Caller lacks permission", recoverable: false}
+    ambiguity:
+      allowed: false
+      policy: "reject ambiguous resource references"
+    permissions:
+      required: true
+      policy: "provider-defined authorization"
+    timing:
+      mode: synchronous
+      timeout: "30s"
+    version: "0.1"
+    discoverability:
+      mode: manifest
+      location: "tool registry"
+    protocol: "tool-call"
+    implementation: "file-service"
+
+mapping:
+  taxonomy: "taxonomy.yaml"
+  ontology: "issues.yaml#ontology"
+  graph: "graph.yaml"
+
+rules:
+  - "Contract must not be confused with protocol or implementation."
+  - "Semantics and transformations are first-class contract properties."
+  - "Effects include relation and boundary changes, not only data mutation."
+  - "Ambiguity and misdelivery may be explicitly modeled rather than treated only as failures."
+  - "A contract may be realized by multiple protocols or implementations."
