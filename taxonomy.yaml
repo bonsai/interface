@@ -1,0 +1,220 @@
+version: "0.1"
+repository: bonsai/interface
+purpose: "Multidimensional taxonomy for describing interfaces"
+
+principle: >-
+  Interface は API の種類ではなく、異なる存在・モデル・環境のあいだで
+  差異を観測し、意味を翻訳し、行為可能性を生成し、関係を変化させる界面である。
+
+axes:
+  actor:
+    description: "界面に参加する存在"
+    values:
+      - human
+      - agent
+      - software
+      - service
+      - organization
+      - ecosystem
+      - environment
+
+  relation:
+    description: "参加者間の関係"
+    values:
+      - human-human
+      - human-agent
+      - human-software
+      - human-service
+      - agent-agent
+      - agent-tool
+      - agent-service
+      - service-service
+      - organization-organization
+      - ecosystem-ecosystem
+      - model-world
+      - world-model
+
+  modality:
+    description: "何を介して関係するか"
+    values:
+      - visual
+      - textual
+      - verbal
+      - tactile
+      - spatial
+      - data
+      - symbolic
+      - executable
+      - event
+      - physical
+
+  direction:
+    description: "作用・情報の方向"
+    values:
+      - input
+      - output
+      - bidirectional
+      - broadcast
+      - negotiated
+      - recursive
+
+  temporality:
+    description: "時間構造"
+    values:
+      - synchronous
+      - asynchronous
+      - streaming
+      - event-driven
+      - persistent
+      - episodic
+      - continuous
+
+  coupling:
+    description: "参加者間の結合様式"
+    values:
+      - tight
+      - loose
+      - negotiated
+      - adaptive
+      - emergent
+      - structural
+
+  mediation:
+    description: "界面が行う媒介作用"
+    values:
+      - observation
+      - translation
+      - transformation
+      - coordination
+      - affordance
+      - negotiation
+      - control
+      - transduction
+      - boundary-generation
+
+  state:
+    description: "状態の保持・共有・変化"
+    values:
+      - stateless
+      - stateful
+      - shared-state
+      - replicated-state
+      - evolving-state
+      - negotiated-state
+
+  effect:
+    description: "界面を通じて生じる作用"
+    values:
+      - read
+      - query
+      - command
+      - mutation
+      - event
+      - learning
+      - relation-change
+      - boundary-change
+      - model-change
+      - actor-change
+
+  discoverability:
+    description: "界面を発見する方法"
+    values:
+      - explicit
+      - manifest
+      - schema
+      - registry
+      - inferred
+      - emergent
+      - negotiated
+
+  embodiment:
+    description: "界面の身体性・物質性"
+    values:
+      - abstract
+      - digital
+      - embodied
+      - spatial
+      - physical
+      - hybrid
+
+# A single interface may occupy multiple values across axes.
+# Taxonomy is descriptive, not hierarchical.
+
+interface_examples:
+  human_ui:
+    actor: [human, software]
+    relation: human-software
+    modality: [visual, tactile]
+    direction: bidirectional
+    temporality: synchronous
+    coupling: loose
+    mediation: [affordance, observation, transformation]
+    state: stateful
+    effect: [query, command, mutation]
+    discoverability: explicit
+    embodiment: embodied
+
+  agent_tool:
+    actor: [agent, software]
+    relation: agent-tool
+    modality: [symbolic, executable]
+    direction: bidirectional
+    temporality: synchronous
+    coupling: negotiated
+    mediation: [translation, transformation, control]
+    state: [stateless, stateful]
+    effect: [query, command, mutation]
+    discoverability: [manifest, schema]
+    embodiment: digital
+
+  agent_agent:
+    actor: [agent]
+    relation: agent-agent
+    modality: [textual, symbolic, event]
+    direction: negotiated
+    temporality: [asynchronous, event-driven]
+    coupling: [loose, negotiated, adaptive]
+    mediation: [translation, negotiation, coordination]
+    state: evolving-state
+    effect: [event, relation-change, learning]
+    discoverability: [inferred, negotiated]
+    embodiment: digital
+
+  model_world:
+    actor: [environment, software]
+    relation: model-world
+    modality: [data, symbolic, spatial]
+    direction: bidirectional
+    temporality: continuous
+    coupling: adaptive
+    mediation: [observation, translation, transformation]
+    state: evolving-state
+    effect: [model-change, relation-change]
+    discoverability: inferred
+    embodiment: hybrid
+
+  ecosystem_interface:
+    actor: [ecosystem]
+    relation: ecosystem-ecosystem
+    modality: [data, symbolic, event]
+    direction: negotiated
+    temporality: [asynchronous, event-driven, persistent]
+    coupling: [loose, negotiated, emergent]
+    mediation: [translation, coordination, negotiation, boundary-generation]
+    state: negotiated-state
+    effect: [relation-change, boundary-change, learning]
+    discoverability: [registry, inferred, negotiated]
+    embodiment: hybrid
+
+mapping:
+  ontology: "issues.yaml#ontology"
+  graph: "Interface Graph"
+  contract: "Interface Contract"
+  affordance: "Interface -> Affordance"
+
+rules:
+  - "Type and dimension must not be conflated."
+  - "One interface may have multiple values on an axis."
+  - "Taxonomy describes interfaces; it does not define their protocol implementation."
+  - "Philosophical concepts become useful when they change an observable design attribute."
+  - "Error, ambiguity, misdelivery, and boundary change remain classifiable phenomena."
