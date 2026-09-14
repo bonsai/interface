@@ -1,0 +1,124 @@
+version: "0.1"
+repository: bonsai/interface
+purpose: "Graph representation of interfaces, actors, models, worlds, capabilities, states, and events"
+
+principle: >-
+  Interface は endpoint の集合ではなく、Actor・Model・World・Environment のあいだで
+  観測・翻訳・媒介・作用・協調・境界生成を生む関係として表現する。
+
+nodes:
+  actor:
+    description: "Interface に参加する主体"
+    required_fields: [id, type]
+    types: [human, agent, software, service, organization, ecosystem]
+  model:
+    description: "世界を記述・予測・操作するモデル"
+    required_fields: [id, type]
+    types: [conceptual, semantic, statistical, computational, spatial, operational]
+  world:
+    description: "モデルが参照する唯一の世界"
+    required_fields: [id]
+  environment:
+    description: "Interface が埋め込まれる状況・場"
+    required_fields: [id]
+  interface:
+    description: "媒介関係そのもの"
+    required_fields: [id, contract]
+  capability:
+    description: "Interface が可能にする行為"
+    required_fields: [id, action]
+  state:
+    description: "関係・主体・モデル・環境の状態"
+    required_fields: [id]
+  event:
+    description: "状態変化または関係変化を観測可能にしたもの"
+    required_fields: [id, type]
+
+edges:
+  observes:
+    from: [actor, model, interface]
+    to: [world, environment, state, event]
+  translates:
+    from: [interface, model]
+    to: [model, actor, interface]
+  mediates:
+    from: [interface]
+    to: [actor, model, world, environment]
+  affords:
+    from: [interface]
+    to: [capability]
+  coordinates:
+    from: [interface, actor, ecosystem]
+    to: [actor, service, ecosystem]
+  commands:
+    from: [actor, interface]
+    to: [actor, software, service, environment]
+  transforms:
+    from: [interface, actor, model, event]
+    to: [state, model, actor, relation]
+  shares:
+    from: [actor, interface, state]
+    to: [actor, model, state]
+  generates:
+    from: [interface, event, state]
+    to: [event, state, capability, relation]
+  bounds:
+    from: [interface, actor, model, ecosystem]
+    to: [boundary, actor, model, ecosystem]
+
+relations:
+  - "Actor --[Interface]--> Actor"
+  - "Actor --[observes]--> World"
+  - "Model --[translates]--> World"
+  - "Interface --[affords]--> Capability"
+  - "Interface --[transforms]--> State"
+  - "Event --[generates]--> New State"
+  - "Interface --[bounds]--> Ecosystem"
+
+interface_node:
+  required:
+    - id
+    - contract
+    - participants
+  fields:
+    id: string
+    contract: string
+    participants: array
+    taxonomy: object
+    mediation: array
+    capabilities: array
+    effects: array
+    protocol: string
+    implementation: string
+
+sample:
+  nodes:
+    - {id: human-1, type: actor}
+    - {id: agent-1, type: actor}
+    - {id: world-1, type: world}
+    - {id: model-1, type: model}
+    - {id: interface-1, type: interface, contract: "agent.files.read"}
+    - {id: capability-read, type: capability, action: read}
+    - {id: state-1, type: state}
+    - {id: event-1, type: event, event_type: read_completed}
+  edges:
+    - {from: human-1, type: commands, to: agent-1}
+    - {from: agent-1, type: observes, to: model-1}
+    - {from: agent-1, type: mediates, to: interface-1}
+    - {from: interface-1, type: affords, to: capability-read}
+    - {from: interface-1, type: transforms, to: state-1}
+    - {from: interface-1, type: generates, to: event-1}
+    - {from: model-1, type: translates, to: world-1}
+
+mapping:
+  taxonomy: "taxonomy.yaml"
+  contract: "contract.yaml"
+  ontology: "issues.yaml#ontology"
+
+rules:
+  - "World is singular in the ontology; models may be multiple."
+  - "Interface is a relation/process node, not merely an endpoint."
+  - "Edges may carry semantics, state transitions, and transformation metadata."
+  - "Capability is generated/afforded by an interface rather than being identical to the interface."
+  - "Boundary generation is a first-class graph phenomenon."
+  - "Graph representation must preserve ambiguity, misdelivery, and relation change when they are contractually relevant."
