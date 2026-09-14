@@ -1,0 +1,63 @@
+version: "0.1"
+name: interface-graph
+purpose: Machine-readable structural schema for Interface Graph documents.
+
+node_types:
+  actor:
+    required: [id, type]
+    type_values: [human, agent, software, service, organization, ecosystem, environment]
+  model:
+    required: [id, type]
+  world:
+    required: [id, type]
+    type_values: [world]
+  environment:
+    required: [id, type]
+  interface:
+    required: [id, type, contract, participants]
+    type_values: [interface]
+  capability:
+    required: [id, type]
+  state:
+    required: [id, type]
+  event:
+    required: [id, type]
+
+edge_types:
+  - observes
+  - translates
+  - mediates
+  - affords
+  - coordinates
+  - commands
+  - transforms
+  - shares
+  - generates
+  - bounds
+
+interface:
+  required: [id, type, contract, participants]
+  participant_min: 2
+  fields:
+    id: string
+    type: interface
+    contract: string
+    participants: list
+    taxonomy: object
+    mediation: list
+    capabilities: list
+    effects: list
+    protocol: string
+    implementation: string
+
+rules:
+  unique_node_ids: true
+  unique_edge_ids: true
+  edge_endpoints_must_exist: true
+  interface_contract_reference_required: true
+  taxonomy_values_must_be_declared: true
+  world_is_singular: true
+  models_are_multiple: true
+  protocol_is_not_interface_semantics: true
+  implementation_is_not_interface_semantics: true
+  ambiguity_and_misdelivery_are_first_class: true
