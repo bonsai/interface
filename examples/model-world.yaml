@@ -1,0 +1,30 @@
+version: "0.1"
+id: "example.model-world"
+interface:
+  id: "model.world-observation"
+  contract: "model.world-observation"
+  taxonomy:
+    actor: [environment, software]
+    relation: model-world
+    modality: [data, symbolic, spatial]
+    direction: bidirectional
+    temporality: continuous
+    coupling: adaptive
+    mediation: [observation, translation, transformation]
+    state: evolving-state
+    effect: [model-change, relation-change]
+    discoverability: inferred
+    embodiment: hybrid
+nodes:
+  - {id: world, type: world}
+  - {id: environment, type: environment}
+  - {id: model, type: model, model_type: computational}
+  - {id: interface, type: interface, contract: "model.world-observation"}
+  - {id: model-state, type: state}
+  - {id: observation, type: event, event_type: observation}
+edges:
+  - {from: environment, type: observes, to: world}
+  - {from: interface, type: observes, to: world}
+  - {from: interface, type: translates, to: model}
+  - {from: model, type: transforms, to: model-state}
+  - {from: interface, type: generates, to: observation}
