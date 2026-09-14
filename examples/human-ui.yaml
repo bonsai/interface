@@ -1,0 +1,28 @@
+version: "0.1"
+id: "example.human-ui"
+interface:
+  id: "ui.search"
+  contract: "ui.search"
+  taxonomy:
+    actor: [human, software]
+    relation: human-software
+    modality: [visual, tactile]
+    direction: bidirectional
+    temporality: synchronous
+    coupling: loose
+    mediation: [observation, affordance, transformation]
+    state: stateful
+    effect: [query, command, mutation]
+    discoverability: explicit
+    embodiment: embodied
+nodes:
+  - {id: human, type: actor, actor_type: human}
+  - {id: ui, type: interface}
+  - {id: search-capability, type: capability, action: query}
+  - {id: results, type: state}
+  - {id: search-completed, type: event, event_type: query_completed}
+edges:
+  - {from: human, type: commands, to: ui}
+  - {from: ui, type: affords, to: search-capability}
+  - {from: search-capability, type: transforms, to: results}
+  - {from: ui, type: generates, to: search-completed}
