@@ -1,0 +1,30 @@
+version: "0.1"
+id: "example.agent-agent"
+interface:
+  id: "agent.collaboration"
+  contract: "agent.collaboration"
+  taxonomy:
+    actor: [agent]
+    relation: agent-agent
+    modality: [textual, symbolic, event]
+    direction: negotiated
+    temporality: [asynchronous, event-driven]
+    coupling: [loose, negotiated, adaptive]
+    mediation: [translation, negotiation, coordination]
+    state: evolving-state
+    effect: [event, relation-change, learning]
+    discoverability: [inferred, negotiated]
+    embodiment: digital
+nodes:
+  - {id: agent-a, type: actor, actor_type: agent}
+  - {id: agent-b, type: actor, actor_type: agent}
+  - {id: collaboration, type: interface, contract: "agent.collaboration"}
+  - {id: shared-context, type: state}
+  - {id: task-agreed, type: event, event_type: agreement}
+edges:
+  - {from: agent-a, type: mediates, to: collaboration}
+  - {from: agent-b, type: mediates, to: collaboration}
+  - {from: collaboration, type: coordinates, to: agent-a}
+  - {from: collaboration, type: coordinates, to: agent-b}
+  - {from: collaboration, type: transforms, to: shared-context}
+  - {from: collaboration, type: generates, to: task-agreed}
