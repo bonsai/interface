@@ -1,0 +1,123 @@
+version: "0.1"
+repository: bonsai/interface
+purpose: "Interface ontology research roadmap"
+
+issues:
+  - number: 1
+    title: "界面とは何かを定義する"
+    focus: [boundary, relation, exchange, meaning, action]
+  - number: 2
+    title: "界面と API / Protocol / Contract の境界を整理する"
+    focus: [interface, contract, protocol, implementation]
+  - number: 3
+    title: "界面の最小単位を定義する"
+    focus: [actor, intent, input, contract, output, effect]
+  - number: 4
+    title: "界面を交換だけでなく作用として捉える"
+    focus: [observe, query, command, event, negotiate]
+  - number: 5
+    title: "Human / Agent / Software / Organization の界面を比較する"
+    focus: [human, agent, software, organization]
+  - number: 6
+    title: "Interface Contract を定義する"
+    focus: [schema, semantics, capability, permission, side_effect]
+  - number: 7
+    title: "界面の発見 Discovery をどう設計するか"
+    focus: [discovery, registry, capability]
+  - number: 8
+    title: "Ecosystem ↔ Interface ↔ Implementation の階層を設計する"
+    focus: [ecosystem, interface, contract, protocol, implementation]
+  - number: 9
+    title: "AWを界面生成・接続エージェントとして定義できるか"
+    focus: [aw, discovery, generation, adapter, composition]
+  - number: 10
+    title: "界面を哲学から援用する：10人の思想家による壁打ち"
+    focus: [philosophy, mediation, translation, transformation]
+  - number: 11
+    title: "Simondon：界面＝転導（transduction）する中間"
+    focus: [simondon, transduction, individuation, process]
+  - number: 12
+    title: "Latour：界面＝媒介者（mediator）として作用する"
+    focus: [latour, mediator, mediation, transformation]
+  - number: 13
+    title: "Deleuze：界面＝差異・生成・出来事の場"
+    focus: [deleuze, difference, becoming, event]
+  - number: 14
+    title: "Nancy：界面＝「共にあること」の場"
+    focus: [nancy, being_with, sharing, co_presence]
+  - number: 15
+    title: "Merleau-Ponty：身体と世界の界面"
+    focus: [embodiment, perception, reversibility, feedback]
+  - number: 16
+    title: "Derrida：界面＝翻訳・差延・誤配の場所"
+    focus: [derrida, translation, differance, ambiguity, misdelivery]
+  - number: 17
+    title: "Foucault：界面＝行為可能性を編成する装置"
+    focus: [foucault, dispositif, power, capability, visibility]
+  - number: 18
+    title: "Luhmann：界面＝システム境界と環境の関係"
+    focus: [luhmann, boundary, closure, structural_coupling]
+  - number: 19
+    title: "McLuhan：界面＝メディアとしての環境"
+    focus: [mcluhan, medium, extension, environment]
+  - number: 20
+    title: "Gibson：界面＝Affordanceとしての行為可能性"
+    focus: [gibson, affordance, capability, action]
+  - number: 21
+    title: "Bateson：界面＝差異を情報にする関係"
+    focus: [bateson, difference, information, feedback, ecology]
+  - number: 22
+    title: "Whitehead：界面＝Process / Event の接触"
+    focus: [whitehead, process, event, becoming, provenance]
+  - number: 23
+    title: "DeLanda：界面＝Assemblage の接続面"
+    focus: [delanda, assemblage, heterogeneity, graph]
+  - number: 24
+    title: "Stiegler：界面＝技術的記憶と主体の媒介"
+    focus: [stiegler, technics, memory, retention, learning]
+  - number: 25
+    title: "Haraway：界面＝異種存在が共生成する接触面"
+    focus: [haraway, situatedness, sympoiesis, multi_agent]
+  - number: 26
+    title: "Barad：界面＝Intra-action による境界生成"
+    focus: [barad, intra_action, agential_cut, boundary_generation]
+  - number: 27
+    title: "Interface Ontology v0.1：10+理論を統合する"
+    focus: [ontology, world, difference, boundary, interface, affordance, action, transformation]
+
+ontology:
+  provisional_definition: >-
+    Interface は、異なる存在・モデル・環境のあいだで、差異を観測可能にし、
+    意味を翻訳し、行為可能性を生成し、関係と境界そのものを変化させる媒介過程。
+  flow:
+    - World
+    - Difference
+    - Boundary / Cut
+    - Interface
+    - Observation
+    - Translation
+    - Mediation
+    - Affordance
+    - Coordination
+    - Action
+    - Transformation / Event
+    - New State / New Relation
+  principles:
+    - "Interface is not merely an API or endpoint."
+    - "Interface is a relation/process as well as an object."
+    - "Interface is a mediator, not a transparent pipe."
+    - "Interface can generate boundaries, not only connect them."
+    - "Interface handles state, action, meaning, capability, and events."
+    - "Interface can be multi-party."
+    - "Error, ambiguity, and misdelivery are first-class phenomena."
+    - "Interface can transform actors, models, and environments."
+    - "Interface can mediate between multiple models of one world."
+
+next:
+  - "Interface Ontology YAML"
+  - "Interface Contract schema"
+  - "Interface Graph"
+  - "Affordance Discovery"
+  - "Interface Registry"
+  - "World ↔ Model ↔ Interface"
+  - "AW = Interface discovery / generation / composition agent"
