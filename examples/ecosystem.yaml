@@ -1,0 +1,32 @@
+version: "0.1"
+id: "example.ecosystem"
+interface:
+  id: "ecosystem.exchange"
+  contract: "ecosystem.exchange"
+  taxonomy:
+    actor: [ecosystem]
+    relation: ecosystem-ecosystem
+    modality: [data, symbolic, event]
+    direction: negotiated
+    temporality: [asynchronous, event-driven, persistent]
+    coupling: [loose, negotiated, emergent]
+    mediation: [translation, coordination, negotiation, boundary-generation]
+    state: negotiated-state
+    effect: [relation-change, boundary-change, learning]
+    discoverability: [registry, inferred, negotiated]
+    embodiment: hybrid
+nodes:
+  - {id: ecosystem-a, type: actor, actor_type: ecosystem}
+  - {id: ecosystem-b, type: actor, actor_type: ecosystem}
+  - {id: exchange, type: interface, contract: "ecosystem.exchange"}
+  - {id: shared-state, type: state}
+  - {id: boundary, type: state}
+  - {id: negotiated, type: event, event_type: relation_negotiated}
+edges:
+  - {from: ecosystem-a, type: mediates, to: exchange}
+  - {from: ecosystem-b, type: mediates, to: exchange}
+  - {from: exchange, type: coordinates, to: ecosystem-a}
+  - {from: exchange, type: coordinates, to: ecosystem-b}
+  - {from: exchange, type: transforms, to: shared-state}
+  - {from: exchange, type: bounds, to: boundary}
+  - {from: exchange, type: generates, to: negotiated}
