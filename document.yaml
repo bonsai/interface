@@ -1,0 +1,160 @@
+api_version: "v1"
+id: document
+name: Document Domain
+version: "0.1"
+description: >
+  Semantic domain for documents as symbolic interfaces between concepts,
+  knowledge, decisions, work, and the world.
+
+principle: >
+  A Document is a symbolic boundary through which concepts are named,
+  related, communicated, fixed, transformed, and made actionable.
+
+world:
+  source: bonsai/world
+  symbols:
+    - same
+    - difference
+    - distinction
+    - relation
+    - pattern
+    - concept
+    - domain
+  derivation:
+    same: undistinguished
+    difference: observable_change
+    distinction: recognized_difference
+    relation: connection_between_distinctions
+    pattern: recurring_relations
+    concept: symbolized_pattern
+    domain: layer_defined_by_concepts
+
+ecosystem:
+  source: bonsai/ecosystem
+  role: semantic_interface
+  layers:
+    - semantic
+    - intelligence
+    - execution
+    - real_world
+    - learning
+  principle: >
+    Documents carry semantic declarations across ecosystem boundaries
+    without becoming runtime coupling.
+
+concepts:
+  document:
+    kind: symbolic_object
+    purpose: persistent_meaning
+  concept:
+    kind: symbol
+    purpose: named_pattern
+  domain:
+    kind: semantic_boundary
+    purpose: organize_concepts
+  relation:
+    kind: connection
+    purpose: connect_concepts
+  claim:
+    kind: assertion
+    purpose: express_knowledge
+  evidence:
+    kind: observation
+    purpose: support_claim
+  decision:
+    kind: commitment
+    purpose: select_action
+  work:
+    kind: activity
+    purpose: change_state
+  artifact:
+    kind: result
+    purpose: materialize_change
+
+relations:
+  names: [document, concept]
+  defines: [document, concept]
+  relates: [concept, concept]
+  contains: [document, concept]
+  represents: [document, world]
+  describes: [document, domain]
+  supports: [evidence, claim]
+  decides: [decision, issue]
+  directs: [decision, work]
+  produces: [work, artifact]
+  observes: [evidence, world]
+  refines: [concept, concept]
+  transforms: [document, document]
+  interfaces: [domain, domain]
+
+interface:
+  definition: concept_to_concept
+  ontology: >
+    Ontology models the interfaces between concepts: their identities,
+    distinctions, relations, constraints, and transformations.
+  document_as_interface: >
+    A Document is an explicit symbolic interface that makes a set of
+    concepts available to another person, agent, system, or domain.
+
+flow:
+  - world
+  - observation
+  - distinction
+  - concept
+  - relation
+  - document
+  - decision
+  - work
+  - artifact
+  - evidence
+  - feedback
+  - world
+
+boundaries:
+  world: owns observable distinctions and world semantics
+  interface: owns semantic connections and translation between concepts
+  document: owns persistent symbolic representation
+  ecosystem: owns cross-repository domain registry and contracts
+  execution: owns operational behavior
+
+artifacts:
+  document_types:
+    - README
+    - specification
+    - requirement
+    - PRD
+    - RFC
+    - ADR
+    - design
+    - research
+    - report
+    - schema
+    - ontology
+    - contract
+
+interfaces:
+  upstream:
+    - world
+    - observation
+    - ontology
+  downstream:
+    - ecosystem
+    - intelligence
+    - execution
+    - evidence
+
+rules:
+  - "A document is not merely text; it is a symbolic interface."
+  - "A concept is meaningful through its distinctions and relations."
+  - "Ontology describes concept interfaces; documents instantiate them."
+  - "World observations are evidence, not declarations of meaning."
+  - "Declarations should remain traceable to concepts, relations, and evidence."
+  - "Domain boundaries may be connected through explicit interfaces."
+
+governance:
+  observed: world_observation
+  inferred: candidate_concept_or_relation
+  proposed: document_change
+  validated: reviewed_semantics
+  declared: document_domain
+  source_of_truth: document_yaml
